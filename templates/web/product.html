@@ -1,0 +1,25 @@
+{% extends 'base/web-base.html' %}
+{% block content %} {% load static %}
+{% include 'includes/web-nav.html' %}
+
+<section class="p-10 grid grid-cols-1 sm:grid-cols-3 gap-5 ">  
+    <div class="col-span-1">
+        <img src="{{product.image.url}}" alt="Image" class="w-full rounded-md shadow-md">
+    </div>
+    <div class="col-span-1 sm:col-span-2">
+        <h1 class="text-[18px] font-bold mt-4  text-gray-700">{{product.name}}</h1>
+        <div class="flex justify-start items-center">
+            {% for size in product.sizes.all %}
+            <h1 class="mr-4 text-[18px] font-bold mt-4  text-gray-700 bg-red-400 py-2 px-3 rounded-md">{{size}}</h1>
+            {% endfor %}
+        </div>
+        <h1 class="text-[18px] font-bold mt-4  text-green-500">₹ {{product.price}}</h1>
+        <div class=" mt-5"> 
+            <a href="{% url 'web:buynow' id=product.id %}" class="py-2 px-5 rounded-md bg-pink-700 text-white font-bold hover:bg-slate-950 ">BUY NOW</a>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

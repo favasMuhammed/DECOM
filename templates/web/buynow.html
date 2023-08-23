@@ -1,0 +1,84 @@
+{% extends 'base/web-base.html' %}
+{% block content %} {% load static %}
+{% include 'includes/web-nav.html' %}
+
+<section class="p-10 grid grid-cols-1 sm:grid-cols-3 gap-5 ">  
+    <div class="col-span-1">
+        <img src="{{product.image.url}}" alt="Image" class="w-full rounded-md shadow-md">
+    </div>
+    <div class="col-span-1 sm:col-span-2">
+        <h1 class="font-bold text-[22px]">To order complete the form</h1>
+        <form action="" method="post" class="">
+            <div class="py-2  rounded-lg  mb-4 flex outline-none">
+                <div class="">
+                    <h3 class="text-lg mb-2">Enter the Quantity</h3>
+                    <div class="wrapper place-items-center">
+                        <span id="minus" class="bg-sky-500 hover:bg-sky-700 py-1 px-4 text-2xl font-extrabold rounded-md">-</span>
+                        
+                        <input type="text" id="num" name="quantity" value=01 class=" py-2 px-4 text-lg rounded-md border">
+
+                        <span id="plus" class="bg-sky-500 hover:bg-sky-700 py-1 px-4 text-2xl font-extrabold rounded-md">+</span>
+                      </div>
+                      <script>
+                       const plus = document.getElementById("plus"),
+                        minus = document.getElementById("minus"),
+                        num = document.getElementById("num");
+                        let a = 1;
+                        plus.addEventListener("click", ()=>{
+                          a++;
+                          a = (a < 10) ? "0" + a : a;
+                          num.value = a;
+
+                        });
+                        minus.addEventListener("click", ()=>{
+                          if(a > 1){
+                            a--;
+                            a = (a < 10) ? "0" + a : a;
+                            num.value = a;
+                          }
+                        });
+                      </script>
+                </div>
+                <div class="">
+
+                </div>
+            
+                
+            </div>
+            <div class="py-2 px-5 rounded-lg border mb-4">
+                <select name="" id="" class="w-full outline-none bg-white mr-4 text-[18px] font-bold  text-gray-700  rounded-md">
+                     {% for size in product.sizes.all %}
+                    <option value="{{size}}">{{size}}</option>
+                    {% endfor %}
+
+                </select>
+                
+            </div>
+            <div class="py-2 px-5 rounded-md border mb-4">
+                <input type="text" name="name" id="" class="w-full outline-none " placeholder="Enter your Name">
+            </div>
+
+            <div class="py-2 px-5 rounded-lg border mb-4">
+                <input type="tel" name="mobile" id="" class="w-full outline-none " placeholder="Enter Mobile number">
+            </div>
+            <div class="py-2 px-5 rounded-lg border mb-4">
+                <textarea name="address" id="" class="w-full outline-none" placeholder="Enter the Address"></textarea>
+            </div>
+            <div class="py-2 px-5 rounded-lg border mb-4">
+                <input type="number" name="pincode" id="" class="w-full outline-none " placeholder="Enter your Pincode">
+                
+            </div>
+
+            <div class="py-2  rounded-lg  mb-4">
+                <input type="submit" value="Buy now" id="" class="py-2 px-5 rounded-md bg-pink-700 text-white font-bold hover:bg-slate-950  " >
+                
+            </div>
+
+
+        </form>
+    </div>
+</section>
+
+
+
+{% endblock %}

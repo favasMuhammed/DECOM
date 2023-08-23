@@ -1,0 +1,29 @@
+{% extends 'base/web-base.html' %}
+{% block content %} {% load static %}
+{% include 'includes/web-nav.html' %}
+
+<section class="p-10">
+    <ul class="flex justify-start items-center flex-wrap">
+        <li class="mr-4 mb-5"><a href="{% url 'web:index' %}" class="py-2 px-5 rounded-md bg-pink-700 text-white font-bold hover:bg-slate-950">ALL PRODUCTS</a></li>
+        
+        {% for category in categories %}
+        <li class="mr-4 mb-5"><a href="{% url 'web:category' id=category.id %}" class="py-2 px-5 rounded-md bg-pink-700 text-white font-bold hover:bg-slate-950">{{category.name}}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section class="px-10 grid gird-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 mb-10">
+    {% for product in products %}
+    <div class="p-4 rounded-xl broder shadow-md hover:bg-gray-100">
+        <img src="{{product.image.url}}" alt="image" class="w-full rounded-lg">
+        <h1 class="text-[18px] font-bold mt-4 text-center text-gray-700">{{product.name}}</h1>
+        <h1 class="text-[18px] font-bold mt-4 text-center text-green-500">₹ {{product.price}}</h1>
+        <div class="text-center mt-5"> 
+            <a href="{% url 'web:product' id=product.id %}" class="py-2 px-5 rounded-md bg-pink-700 text-white font-bold hover:bg-slate-950 ">VIEW</a>
+        </div>
+
+    </div>
+    {% endfor %}
+</section>
+
+{% endblock %}
